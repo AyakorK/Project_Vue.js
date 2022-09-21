@@ -1,94 +1,13 @@
 <template src="./DashboardComponent.html" ></template>
   
-<script>
-  import { useProductStore } from '../../stores/Store.js';
-  import { onBeforeMount } from 'vue';
-  import axios from 'axios'
+  <script>
+export default {
 
-
-  export default {
-    data() {
-      return {
-        msg: "-- Dashboard --",
-        newProductName: "",
-        newProductColor: "",
-        newProductCategory: "",
-        newProductPrice: "",
-      }
-    },
-    setup(){
-      const useStore = useProductStore()
-      const products = useStore.products;
-
-      onBeforeMount(() => {
-        useStore.fetchProducts()
-      })
-
-      return {
-        products,
-        useStore
-      }
-    },
-    methods: {
-      addProduct() {
-        axios.post('http://10.57.29.211:3000/products', {
-
-              id: this.products.slice(-1)[0].id + 1,
-              name: this.newProductName,
-              quantity: this.newProductQuantity,
-              category: this.newProductCategory,
-              price: this.newProductPrice,
-
-            })
-              .then(function (response) {
-                console.log(response)
-                if (response.status == 201) {
-
-                  console.log("test")
-
-                  this.newProductName = '';
-                  this.newProductColor = '';
-                  this.newProductCategory = '';
-                  this.newProductPrice = '';
-
-                  this.$router.push({ name: 'store' });
-
-                } else {
-                  alert("Register failed");
-                }
-
-              })
-              .catch(function (error) {
-                console.log(error);
-            });
-      },
-      deleteProduct(ProductID) {
-        axios.delete("http://10.57.29.211:3000/products/" + ProductID)
-          .then(() => {
-            this.products.splice(ProductID, 1);
-            // console.log(this.products);
-          });
-          console.log("delete")
-      },
-    }
   }
-</script>
-
+  </script>
+  
   <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
-  h3 {
-    margin: 40px 0 0;
-  }
-  ul {
-    list-style-type: none;
-    padding: 0;
-  }
-  li {
-    display: inline-block;
-    margin: 0 10px;
-  }
-  a {
-    color: #42b983;
-  }
-</style>
+  <style scoped>
+
+  </style>
   
