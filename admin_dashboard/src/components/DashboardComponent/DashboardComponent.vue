@@ -1,72 +1,78 @@
 <template src="./DashboardComponent.html" ></template>
   
-  <script>
+<script>
+  import { useProductStore } from '../../stores/Store.js';
+  import { onBeforeMount } from 'vue';
+  import axios from 'axios'
+
   export default {
     data() {
       return {
         msg: "-- Dashboard --",
-        products: [
-          {
-            id: 1,
-            name: "Apple MacBook Pro 17",
-            color: "Silver",
-            category: "Laptop",
-            price: 2999,
-          },
-          {
-            id: 2,
-            name: "Microsoft Surface Pro	",
-            color: "White",
-            category: "Laptop PC",
-            price: 1999,
-          },
-          {
-            id: 3,
-            name: "Magic Mouse 2",
-            color: "Black",
-            category: "Accessories",
-            price: 99,
-          },
-          {
-            id: 4,
-            name: "Google Pixel Phone",
-            color: "Gray",
-            category: "Phone",
-            price: 999,
-          },
-        ],
         newProductName: "",
         newProductColor: "",
         newProductCategory: "",
         newProductPrice: "",
       }
     },
+    setup(){
+      const useStore = useProductStore()
+      const products = useStore.products;
+
+      onBeforeMount(() => {
+        useStore.fetchProducts()
+      })
+
+      return {
+        products,
+        useStore
+      }
+    },
     methods: {
       addProduct() {
-        // if (this.newProductName && this.newProductColor && this.newProductCategory && this.newProductPrice) {
+        axios.post('http://10.57.29.211:3000/products', {
 
-          this.products.push({
-            id: this.products.slice(-1)[0].id + 1,
-            name: this.newProductName,
-            color: this.newProductColor,
-            category: this.newProductCategory,
-            price: this.newProductPrice,
-          });
-          console.log(this.products)
-          
-          this.newProductName = '';
-          this.newProductColor = '';
-          this.newProductCategory = '';
-          this.newProductPrice = '';
-          
-        // }
+              id: this.products.slice(-1)[0].id + 1,
+              name: this.newProductName,
+              quantity: this.newProductQuantity,
+              category: this.newProductCategory,
+              price: this.newProductPrice,
+
+            })
+              .then(function (response) {
+                console.log(response)
+                if (response.status == 201) {
+
+                  console.log("test")
+
+                  this.newProductName = '';
+                  this.newProductColor = '';
+                  this.newProductCategory = '';
+                  this.newProductPrice = '';
+
+                  this.$router.push({ name: 'store' });
+
+                } else {
+                  alert("Register failed");
+                }
+
+              })
+              .catch(function (error) {
+                console.log(error);
+            });
+      },
+      deleteProduct(ProductID) {
+        this.products = this.products.filter(
+          (products) => products.id !== ProductID
+        );
+
       },
     }
   }
-  </script>
-  
+</script>
+
   <!-- Add "scoped" attribute to limit CSS to this component only -->
-  <style scoped>
+<style scoped>
   h3 {
     margin: 40px 0 0;
   }
@@ -81,5 +87,5 @@
   a {
     color: #42b983;
   }
-  </style>
+</style>
   
