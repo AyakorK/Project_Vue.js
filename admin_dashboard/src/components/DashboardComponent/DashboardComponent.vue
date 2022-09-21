@@ -1,8 +1,7 @@
 <template src="./DashboardComponent.html" ></template>
   
   <script>
-  export default {
-    
+export default {
 
   }
   </script>
