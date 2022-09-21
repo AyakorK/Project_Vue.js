@@ -5,6 +5,7 @@
   import { onBeforeMount } from 'vue';
   import axios from 'axios'
 
+
   export default {
     data() {
       return {
@@ -62,10 +63,12 @@
             });
       },
       deleteProduct(ProductID) {
-        this.products = this.products.filter(
-          (products) => products.id !== ProductID
-        );
-
+        axios.delete("http://10.57.29.211:3000/products/" + ProductID)
+          .then(() => {
+            this.products.splice(ProductID, 1);
+            // console.log(this.products);
+          });
+          console.log("delete")
       },
     }
   }
