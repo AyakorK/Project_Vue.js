@@ -9,7 +9,7 @@
   
   <script>
 
-  import { useProductStore } from '../stores/Store.js';
+  import { useProductStore } from '../../stores/Store.js';
   import { onBeforeMount } from 'vue';
 
   export default {
