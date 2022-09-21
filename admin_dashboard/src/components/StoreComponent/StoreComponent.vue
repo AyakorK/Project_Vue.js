@@ -1,12 +1,39 @@
-<template src="./StoreComponent.html" ></template>
+<template>
+    <h1>Store</h1>
+  <ul>
+    <li v-for="(item, index) in characters" :key="index">
+      <a :href="item.url">{{ item.name }}</a>
+    </li>
+  </ul>
+  </template>
   
   <script>
+
+  import { useProductStore } from '../stores/Store.js';
+  import { onBeforeMount } from 'vue';
+
   export default {
+    setup(){
+      const useStore = useProductStore()
+      const characters = useStore.characters;
+
+      onBeforeMount(() => {
+        useStore.fetchProducts()
+      })
+
+      return {
+        characters,
+        useStore
+      }
+    },
+    
     name: 'HelloWorld',
-    props: {
-      msg: String
+    computed:{
+    },
+    methods:{
     }
   }
+  
   </script>
   
   <!-- Add "scoped" attribute to limit CSS to this component only -->

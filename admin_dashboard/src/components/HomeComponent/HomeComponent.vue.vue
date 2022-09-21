@@ -1,6 +1,7 @@
 <template src="./HomeComponent.html" ></template>
 
 <script>
+
 export default {
   name: 'HelloWorld',
   props: {
