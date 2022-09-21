@@ -2,6 +2,11 @@ import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
 import StoreView from '../views/StoreView.vue'
 import DashboardView from '../views/DashboardView.vue'
+import ClientsView from '../views/ClientsView.vue'
+import CommandesView from '../views/CommandesView.vue'
+import ProduitsView from '../views/ProduitsView.vue'
+import CategoriesView from '../views/CategoriesView.vue'
+import ProfilView from '../views/ProfilView.vue'
 
 const routes = [{
         path: '/',
@@ -18,6 +23,31 @@ const routes = [{
         name: 'dashboard',
         component: DashboardView
     },
+    {
+        path: '/clients',
+        name: 'clients',
+        component: ClientsView
+    },
+    {
+        path: '/commandes',
+        name: 'commandes',
+        component: CommandesView
+    },
+    {
+        path: '/produits',
+        name: 'produits',
+        component: ProduitsView
+    },
+    {
+        path: '/categories',
+        name: 'categories',
+        component: CategoriesView
+    },
+    {
+        path: '/profil',
+        name: 'profil',
+        component: ProfilView
+    }
     // {
     //     path: '/store',
     //     name: 'store',
