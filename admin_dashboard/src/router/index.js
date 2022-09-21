@@ -18,6 +18,18 @@ const routes = [{
         name: 'dashboard',
         component: DashboardView
     },
+    {
+        path: '/login',
+        name: 'login',
+        component: () =>
+            import ('../views/account/LoginView.vue')
+    },
+    {
+        path: '/register',
+        name: 'register',
+        component: () =>
+            import ('../views/account/RegisterView.vue')
+    }
     // {
     //     path: '/store',
     //     name: 'store',

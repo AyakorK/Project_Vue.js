@@ -3,7 +3,13 @@
     <router-link to="/">Home</router-link> |
     <router-link to="/store">Store</router-link> |
     <router-link to="/dashboard">Dashboard</router-link>
+    <div class="absolute top-0 right-0 h-16 w-16">
+    <router-link to="/login">Login</router-link> |
+    <router-link to="/register">Register</router-link>   
+  </div>
   </nav>
+  <!-- At top right make login and register button -->
+
   <router-view/>
 </template>
 
