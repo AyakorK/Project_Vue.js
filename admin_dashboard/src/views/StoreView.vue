@@ -6,7 +6,7 @@
   
   <script>
   // @ is an alias to /src
-  import StoreComponent from '@/components/StoreComponent.vue'
+  import StoreComponent from '@/components/StoreComponent/StoreComponent.vue'
   
   export default {
     name: 'StoreView',
