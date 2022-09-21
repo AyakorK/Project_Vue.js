@@ -4,6 +4,18 @@
   export default {
     
 
+    // Afficher div quand on clique sur <a>
+    data() {
+      return {
+        show: false
+      };
+    },
+    methods: {
+      toggle() {
+        this.show = !this.show;
+        console.log("toggle");
+      }
+    }
   }
   </script>
   
