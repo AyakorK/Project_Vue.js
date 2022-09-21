@@ -1,8 +1,4 @@
-<template>
-    <div class="hello">
-      `{{ msg }}`
-    </div>
-  </template>
+<template src="./DashboardComponent.html" ></template>
   
   <script>
   export default {
