@@ -7,5 +7,11 @@ module.exports = {
   variants: {
     extend: {},
   },
-  plugins: [],
+  plugins: [
+    require('flowbite/plugin'),
+    require('tw-elements/dist/plugin'),
+  ],
+  content: [
+    "./node_modules/flowbite/**/*.js"
+  ],
 }
