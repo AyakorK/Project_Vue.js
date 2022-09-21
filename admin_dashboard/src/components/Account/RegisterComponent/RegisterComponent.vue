@@ -1,6 +1,7 @@
 <template src="./RegisterComponent.html" ></template>
 
 <script>
+  import axios from 'axios';
     export default {
       name: 'HelloWorld',
       email: "",
@@ -10,25 +11,29 @@
       },
       methods: {
         register: function () {
-          console.log("register");
-          console.log(this.email);
-          console.log(this.password);
-          if (this.confirm_password == this.password) {
-            this.$http.post('http://10.57.29.211:3000/users', {
+         // If there is no field that are empty
+          if (this.email != undefined && this.password != undefined && this.password == this.confirm_password) {
+            // Send the data to the server
+            axios.post('http://10.57.29.211:3000/users', {
               email: this.email,
-              password: this.password
-            }).then(response => {
-              console.log(response);
-            }, response => {
-              console.log(response);
+              password: this.password,
+              money: 100
+            })
+              .then(function (response) {
+                console.log(response.status);
+                if (response.status === 201) {
+                  window.location.href = "http://localhost:8080/login";
+                  
+                } else {
+                  alert("Register failed");
+                }
+              })
+              .catch(function (error) {
+                console.log(error);
             });
-          } else {
-            console.log("passwords do not match");
           }
         }
       }
     }
-    // Import admin_dashboard/src/assets/index.css
-    import '@/assets/index.css'
     
     </script>
