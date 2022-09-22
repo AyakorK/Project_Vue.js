@@ -16,7 +16,8 @@
         cart: [],
         totalPrice: 0,
         selectedCart: 0,
-        selectedCategory: 0
+        selectedCategory: 0,
+        selectCategoryName: "Select a category to filter",
       }
     },
     computed:{
@@ -36,6 +37,7 @@
         // console.log(this.products[this.selectedCategory].id)
         this.ProductStoreStore.fetchProductsWithId(productsId)
         this.allProducts = this.ProductStoreStore.products
+        this.selectCategoryName = this.category[productsId - 1].title
       },
       addToCart(id, name, price){
         // If id already exists in the cart increase his quantity by one
