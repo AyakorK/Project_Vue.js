@@ -1,36 +1,31 @@
-<template>
-    <h1>Store</h1>
-  <ul>
-    <li v-for="(item, index) in characters" :key="index">
-      <a :href="item.url">{{ item.name }}</a>
-    </li>
-  </ul>
+<template src="./StoreComponent.html">
+    
   </template>
   
   <script>
 
   import { useProductStore } from '../../stores/Store.js';
-  import { onBeforeMount } from 'vue';
+  import {mapStores , mapState} from 'pinia';
 
   export default {
-    setup(){
-      const useStore = useProductStore()
-      const characters = useStore.characters;
-
-      onBeforeMount(() => {
-        useStore.fetchProducts()
-      })
-
-      return {
-        characters,
-        useStore
-      }
-    },
     
     name: 'HelloWorld',
     computed:{
+
+      ...mapStores(useProductStore),
+      ...mapState(useProductStore, ['category' ,'products'] ),
+
+     
     },
+    beforeMount(){
+        this.ProductStoreStore.fetchCategory()
+        // this.ProductStoreStore.fetchProducts()
+      },
+
     methods:{
+      showProducts(productsId){
+        this.ProductStoreStore.fetchProductsWithId(productsId)
+      }
     }
   }
   
