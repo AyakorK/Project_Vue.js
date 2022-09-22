@@ -16,6 +16,7 @@
         cart: [],
         totalPrice: 0,
         selectedCart: 0,
+        selectedCategory: 0
       }
     },
     computed:{
@@ -27,11 +28,12 @@
     },
     beforeMount(){
         this.ProductStoreStore.fetchCategory()
-        // this.ProductStoreStore.fetchProducts()
+        this.ProductStoreStore.fetchProducts()
       },
 
     methods:{
       showProducts(productsId){
+        // console.log(this.products[this.selectedCategory].id)
         this.ProductStoreStore.fetchProductsWithId(productsId)
         this.allProducts = this.ProductStoreStore.products
       },
@@ -76,6 +78,10 @@
           }).catch(error => {
             console.log(error.response.data)
           })
+      },
+
+      updateCategory(index) {
+        this.selectedCategory = index
       },
 
       updateCart(index) {
