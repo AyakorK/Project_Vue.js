@@ -103,9 +103,7 @@
         // Get the infos of the user
         
         const user = this.user[0]
-        if (user.money < this.totalPrice) {
-          alert("You don't have enough money")
-        } else {
+        if (user.money > this.totalPrice && this.totalPrice > 0 && this.cart.length > 0) {
           axios.put(`http://10.57.29.211:3000/users/${user.id}`, {
             email: user.email,
             password: user.password,
@@ -126,6 +124,12 @@
           }).catch(error => {
             console.log(error.response.data)
           })
+        } else if (user.money < this.totalPrice) {
+          alert("You don't have enough money to buy this cart")
+        } else if (this.totalPrice == 0) {
+          alert("Your cart is empty")
+        } else if (this.cart.length == 0) {
+          alert("Your cart is empty")
         }
       }
     }
