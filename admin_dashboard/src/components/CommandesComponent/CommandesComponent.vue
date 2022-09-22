@@ -65,7 +65,7 @@
         total_price += product.price * products[i].quantity
       }
 
-
+      if (user.money + parseInt(this.orders.total_price) - parseInt(total_price) > 0) {
       axios.put('http://10.57.29.211:3000/users/' + user.id, {
         email: user.email,
         password: user.password,
@@ -81,6 +81,9 @@
         total_price: total_price,
       })
       window.location.reload();
+      } else {
+        alert("Not enough money")
+      }
       }
 
     }
