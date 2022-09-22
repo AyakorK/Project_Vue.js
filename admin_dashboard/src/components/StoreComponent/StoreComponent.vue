@@ -50,7 +50,7 @@
         }
         // Calculate the total price
         this.totalPrice += this.ProductStoreStore.products.find(item => item.id === id).price
-      }
+      },
     }
   }
   
