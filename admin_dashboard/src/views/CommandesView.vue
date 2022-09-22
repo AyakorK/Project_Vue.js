@@ -1,5 +1,5 @@
 <template>
-    <div class="clients">
+    <div class="commandes">
         <CommandesComponent/>
         <DashboardComponent/>
      </div>
