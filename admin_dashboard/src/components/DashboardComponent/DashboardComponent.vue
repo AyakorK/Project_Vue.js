@@ -5,6 +5,7 @@
   import { onBeforeMount } from 'vue';
   import axios from 'axios'
 
+  import { mapStores, mapState } from 'pinia'
 
   export default {
     data() {
@@ -17,18 +18,25 @@
         table: "",
       }
     },
-    setup(){
-      const useStore = useProductStore()
-      const products = useStore.products;
+    // setup(){
+    //   const useStore = useProductStore()
+    //   const products = useStore.products;
 
-      onBeforeMount(() => {
-        useStore.fetchProducts()
-      })
+    //   onBeforeMount(() => {
+    //     useStore.fetchProducts()
+    //   })
 
-      return {
-        products,
-        useStore
-      }
+    //   return {
+    //     products,
+    //     useStore
+    //   }
+    // },
+    computed: {
+      ...mapStores(useProductStore),
+      ...mapState(useProductStore, ['products'])
+    },
+    beforeMount() {
+      this.ProductStoreStore.fetchProducts()
     },
     methods: {
       updateBoard() {
