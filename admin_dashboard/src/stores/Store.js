@@ -4,8 +4,9 @@ export const useProductStore = defineStore("ProductStore", {
     state: () => {
         return {
             products: [],
-            category:[],
-        };  
+            category: [],
+            users: [],
+        };
     },
     actions: {
         async fetchProducts() {
@@ -18,10 +19,15 @@ export const useProductStore = defineStore("ProductStore", {
             const data = await res.json()
             this.category = data
         },
-        async fetchProductsWithId(productsId){
-            const res = await fetch('http://10.57.29.211:3000/products?category=' + productsId )
+        async fetchProductsWithId(productsId) {
+            const res = await fetch('http://10.57.29.211:3000/products?category=' + productsId)
             const data = await res.json()
             this.products = data
+        },
+        async fetchUsers() {
+            const res = await fetch('http://10.57.29.211:3000/users')
+            const data = await res.json()
+            this.users = data
         }
-    },    
+    },
 });
