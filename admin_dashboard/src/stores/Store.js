@@ -5,6 +5,7 @@ export const useProductStore = defineStore("ProductStore", {
         return {
             products: [],
             category:[],
+            users: [],
         };  
     },
     actions: {
@@ -22,6 +23,11 @@ export const useProductStore = defineStore("ProductStore", {
             const res = await fetch('http://10.57.29.211:3000/products?category=' + productsId )
             const data = await res.json()
             this.products = data
+        },
+        async fetchUsers(){
+            const res = await fetch('http://10.57.29.211:3000/users')
+            const data = await res.json()
+            this.users = data
         }
     },    
 });
