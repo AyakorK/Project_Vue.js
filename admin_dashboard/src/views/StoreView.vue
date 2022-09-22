@@ -2,7 +2,7 @@
     <headerComponent></headerComponent>
 
     <div class="store">
-      <CartComponent />
+
       <SideBarComponent/>
       
       <StoreComponent/>
@@ -15,7 +15,7 @@
   import SideBarComponent from '@/components/SideBarComponent/SideBarComponent.vue'
   import StoreComponent from '@/components/StoreComponent/StoreComponent.vue'
   import HeaderComponent from '@/components/HeaderComponent/HeaderComponent.vue'
-  import CartComponent from '@/components/CartComponent/CartComponent.vue'
+
 
   export default {
     name: 'StoreView',
@@ -23,7 +23,7 @@
       SideBarComponent,
       StoreComponent,
       HeaderComponent,
-      CartComponent
+
 
     }
   }

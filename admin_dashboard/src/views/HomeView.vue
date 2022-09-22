@@ -1,5 +1,4 @@
 <template>
-  <CartComponent />
   <SideBarComponent/>
 
   <headerComponent>
@@ -14,7 +13,7 @@
 import SideBarComponent from '@/components/SideBarComponent/SideBarComponent.vue'
 import HelloWorld from '@/components/HomeComponent/HomeComponent.vue'
 import HeaderComponent from '@/components/HeaderComponent/HeaderComponent.vue'
-import CartComponent from '@/components/CartComponent/CartComponent.vue'
+
 
 export default {
   name: 'HomeView',
@@ -22,7 +21,7 @@ export default {
     HelloWorld,
     HeaderComponent,
     SideBarComponent,
-    CartComponent
+
   }
 }
 </script>
