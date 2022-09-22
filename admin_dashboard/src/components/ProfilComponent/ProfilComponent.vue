@@ -6,11 +6,15 @@
   export default {
     computed: {
       ...mapStores(useProductStore),
-      ...mapState(useProductStore, ['users'] ),
+      ...mapState(useProductStore, ['user']),
     },
     beforeMount(){
-      this.ProductStoreStore.fetchUsers()
-      this.getName()
+      this.ProductStoreStore.fetchUser(sessionStorage.getItem('token'))
+    },
+    beforeUpdate(){
+      if (this.user.length == 0){
+        this.$router.push('/login')
+      }
     },
     data() {
       return {
@@ -18,16 +22,6 @@
       }
     },
     methods: {
-      getName: function() {
-        // Get token in the sessionStorage
-        let token = sessionStorage.getItem('token')
-        this.ProductStoreStore.users.filter(user => {
-          if(user.token === token){
-            this.email = user.email
-          }
-          console.log(this.email)
-        })
-      },
     }
 
   }
