@@ -17,7 +17,8 @@
             axios.post('http://10.57.29.211:3000/users', {
               email: this.email,
               password: this.password,
-              money: 100
+              money: 100,
+              token: Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15)
             })
               .then(function (response) {
                 console.log(response.status);
