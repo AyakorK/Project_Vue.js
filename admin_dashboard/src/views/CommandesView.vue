@@ -1,5 +1,6 @@
 <template>
     <div class="commandes">
+      <CartComponent />
         <SideBarComponent/>
         <CommandesComponent/>
         <DashboardComponent/>
