@@ -2,7 +2,7 @@
     <headerComponent></headerComponent>
     <div class="store">
       <SideBarComponent/>
-      <StoreComponent msg="Welcome to Your Vue.js App"/>
+      <StoreComponent/>
       <DashboardComponent/>
     </div>
   </template>

@@ -1,36 +1,56 @@
-<template>
-    <h1>Store</h1>
-  <ul>
-    <li v-for="(item, index) in characters" :key="index">
-      <a :href="item.url">{{ item.name }}</a>
-    </li>
-  </ul>
+<template src="./StoreComponent.html">
+    
   </template>
   
   <script>
 
   import { useProductStore } from '../../stores/Store.js';
-  import { onBeforeMount } from 'vue';
+  import {mapStores , mapState} from 'pinia';
 
   export default {
-    setup(){
-      const useStore = useProductStore()
-      const characters = useStore.characters;
-
-      onBeforeMount(() => {
-        useStore.fetchProducts()
-      })
-
-      return {
-        characters,
-        useStore
-      }
-    },
     
     name: 'HelloWorld',
-    computed:{
+    data() {
+      return {
+        cart: [],
+        totalPrice: 0,
+      }
     },
+    computed:{
+
+      ...mapStores(useProductStore),
+      ...mapState(useProductStore, ['category' ,'products'] ),
+
+     
+    },
+    beforeMount(){
+        this.ProductStoreStore.fetchCategory()
+        // this.ProductStoreStore.fetchProducts()
+      },
+
     methods:{
+      showProducts(productsId){
+        this.ProductStoreStore.fetchProductsWithId(productsId)
+        this.allProducts = this.ProductStoreStore.products
+      },
+      addToCart(id){
+        // If id already exists in the cart increase his quantity by one
+        if(this.cart.some(item => item.id === id)){
+          this.cart.forEach(item => {
+            if(item.id === id){
+              item.quantity++
+            }
+          })
+        }else{
+          // If id doesn't exist in the cart add it to the cart
+          this.cart.push({
+            id: id,
+            quantity: 1
+          })
+        }
+        // Calculate the total price
+        this.totalPrice += this.ProductStoreStore.products.find(item => item.id === id).price
+      }
     }
   }
   
