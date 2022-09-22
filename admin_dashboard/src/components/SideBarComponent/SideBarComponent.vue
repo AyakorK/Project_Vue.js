@@ -2,8 +2,21 @@
   
   <script>
   export default {
-
+      methods: {
+        isAuthenticated() {
+          if (sessionStorage.getItem('token') != null) {
+            return true;
+          } else {
+            return false;
+          }
+        },
+        logout() {
+          sessionStorage.removeItem('token');
+          window.location.href = "/";
+        }
+      }
   }
+  
   </script>
   
   <!-- Add "scoped" attribute to limit CSS to this component only -->

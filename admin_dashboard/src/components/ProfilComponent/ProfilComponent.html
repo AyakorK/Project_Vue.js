@@ -1,5 +1,12 @@
 <div class="hello">
     <h2>PROFIL</h2>
-    
+    <!-- Import a regular profile picture  and center it -->
+    <!-- Create a div and center it with tailwind  -->
+    <div class="flex justify-center">
+        <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png" alt="profile picture" class="w-48 h-48 rounded-full">
+    </div>
+    <div v-for="user in user">
+        <h1> {{ user.email }} </h1>
+    </div>
 
-</div>  
+</div>
