@@ -1,7 +1,10 @@
 <template>
     <headerComponent></headerComponent>
+
     <div class="store">
+
       <SideBarComponent/>
+      
       <StoreComponent/>
       <DashboardComponent/>
     </div>
@@ -13,12 +16,15 @@
   import StoreComponent from '@/components/StoreComponent/StoreComponent.vue'
   import HeaderComponent from '@/components/HeaderComponent/HeaderComponent.vue'
 
+
   export default {
     name: 'StoreView',
     components: {
       SideBarComponent,
       StoreComponent,
-      HeaderComponent
+      HeaderComponent,
+
+
     }
   }
   </script>
