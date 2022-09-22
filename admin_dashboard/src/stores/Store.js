@@ -6,7 +6,8 @@ export const useProductStore = defineStore("ProductStore", {
             products: [],
             category: [],
             users: [],
-            user: []
+            user: [],
+            orders: [],
         };
     },
     actions: {
@@ -34,6 +35,11 @@ export const useProductStore = defineStore("ProductStore", {
             const res = await fetch('http://10.57.29.211:3000/users?token=' + token)
             const data = await res.json()
             this.user = data
+        },
+        async fetchOrders() {
+            const res = await fetch('http://10.57.29.211:3000/orders')
+            const data = await res.json()
+            this.orders = data
         }
     },
 });
