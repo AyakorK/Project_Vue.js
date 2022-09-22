@@ -10,12 +10,6 @@
   export default {
     
     name: 'HelloWorld',
-    data() {
-      return {
-        cart: [],
-        totalPrice: 0,
-      }
-    },
     computed:{
 
       ...mapStores(useProductStore),
@@ -31,25 +25,6 @@
     methods:{
       showProducts(productsId){
         this.ProductStoreStore.fetchProductsWithId(productsId)
-        this.allProducts = this.ProductStoreStore.products
-      },
-      addToCart(id){
-        // If id already exists in the cart increase his quantity by one
-        if(this.cart.some(item => item.id === id)){
-          this.cart.forEach(item => {
-            if(item.id === id){
-              item.quantity++
-            }
-          })
-        }else{
-          // If id doesn't exist in the cart add it to the cart
-          this.cart.push({
-            id: id,
-            quantity: 1
-          })
-        }
-        // Calculate the total price
-        this.totalPrice += this.ProductStoreStore.products.find(item => item.id === id).price
       }
     }
   }
