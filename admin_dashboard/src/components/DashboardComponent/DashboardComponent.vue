@@ -69,6 +69,7 @@
             this.products.quantity = response.data.quantity
             this.products.category = response.data.category
             this.products.price = response.data.price
+            
           }).catch(error => {
             console.log(error.response.data)
           })
