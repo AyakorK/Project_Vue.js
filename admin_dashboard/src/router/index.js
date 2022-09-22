@@ -47,6 +47,18 @@ const routes = [{
         path: '/profil',
         name: 'profil',
         component: ProfilView
+    },
+    {
+        path: '/login',
+        name: 'login',
+        component: () =>
+            import ('../views/account/LoginView.vue')
+    },
+    {
+        path: '/register',
+        name: 'register',
+        component: () =>
+            import ('../views/account/RegisterView.vue')
     }
     // {
     //     path: '/store',
