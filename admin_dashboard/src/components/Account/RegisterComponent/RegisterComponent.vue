@@ -11,8 +11,11 @@
       },
       methods: {
         register: function () {
-         // If there is no field that are empty
-          if (this.email != undefined && this.password != undefined && this.password == this.confirm_password) {
+          //Create a regex to check if the email is valid
+          var emailRegex = new RegExp("^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$");
+          //Check if the email is valid
+
+          if (this.email != undefined  &&  emailRegex.test(this.email) && this.password != undefined && this.password.length >= 8  && this.password == this.confirm_password) {
             // Send the data to the server
             axios.post('http://10.57.29.211:3000/users', {
               email: this.email,
@@ -25,7 +28,7 @@
                 if (response.status === 201) {
                   window.location.href = "http://localhost:8080/login";
                   
-                } else {
+                } else { 
                   alert("Register failed");
                 }
               })
