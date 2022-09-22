@@ -3,6 +3,7 @@
   <script>
       import { useProductStore } from '../../stores/Store.js';
       import {mapStores , mapState} from 'pinia';
+      import axios from 'axios';
 
   export default {
 
@@ -17,6 +18,16 @@
     },
 
     methods:{
+
+    deleteProduct(usersID) {
+      console.log("delete")
+      axios.delete("http://10.57.29.211:3000/users/" + usersID)
+        .then(() => {
+          this.products.splice(usersID, 1);
+          // console.log(this.products);
+          location.reload();
+        });
+    },
   }
 }
   </script>
