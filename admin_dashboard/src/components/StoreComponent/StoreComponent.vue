@@ -8,7 +8,10 @@
   import {mapStores , mapState} from 'pinia';
   import axios from 'axios'
 
+  let productName = [];
+
   export default {
+    
     
     name: 'HelloWorld',
     data() {
@@ -16,7 +19,7 @@
         cart: [],
         totalPrice: 0,
         selectedCart: 0,
-        selectedCategory: 0
+        selectedCategory: 0,
       }
     },
     computed:{
@@ -24,18 +27,27 @@
       ...mapStores(useProductStore),
       ...mapState(useProductStore, ['category' ,'products'] ),
 
-     
+      
+      
+      //Create a function that sort the array given
+      sortArray: function () {
+        productName = this.products;
+        return productName.sort((a, b) => a.name.localeCompare(b.name));
+      },
     },
+    
     beforeMount(){
         this.ProductStoreStore.fetchCategory()
         this.ProductStoreStore.fetchProducts()
       },
+
 
     methods:{
       showProducts(productsId){
         // console.log(this.products[this.selectedCategory].id)
         this.ProductStoreStore.fetchProductsWithId(productsId)
         this.allProducts = this.ProductStoreStore.products
+        
       },
       addToCart(id, name, price){
         // If id already exists in the cart increase his quantity by one
@@ -87,8 +99,9 @@
       updateCart(index) {
           this.selectedCart = index;
       },
-    }
+
   }
+}
   
   </script>
   
