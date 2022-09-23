@@ -44,7 +44,8 @@
     <h2>{{ this.ProductStoreStore.page }} sur {{ this.ProductStoreStore.totalPage}}</h2>    
 </div>
 
-<div pagination>
+<div pagination
+v-if="this.ProductStoreStore.totalUser > 6">
  <!-- Previous Button -->
     <a 
     v-if="this.ProductStoreStore.page > 1"
