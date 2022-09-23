@@ -8,12 +8,13 @@
   export default {
     data() {
       return {
-        msg: "-- Category --",
+        msg: "-- Categories --",
         children: [],
         newCategoryName: ""
       }
     },
     
+    // Take the Pania Store
     computed: {
       ...mapStores(useProductStore),
       ...mapState(useProductStore, ['category' ,'products'] ),
@@ -23,33 +24,28 @@
       this.ProductStoreStore.fetchCategory()
     },
     methods: {
-      
+      //Function to show children of each category
       showChildren(productsId){
         this.ProductStoreStore.fetchProductsWithId(productsId)
         this.allProducts = this.ProductStoreStore.products
-
       },
-
+      //Function to add a category to the API
       addCategory() {
         axios.post('http://10.57.29.211:3000/categories', {
 
-              id: this.category.slice(-1)[0].id + 1,
-              title: this.newCategoryName,
+          id: this.category.slice(-1)[0].id + 1,
+          title: this.newCategoryName,
 
-            })
-              .then(function (response) {
-                console.log(response)
-                location.reload();
-              })
-              .catch(function (error) {
-                console.log(error);
-            });
-            // location.reload();
-            
-      },
-      
+        })
+          .then(function (response) {
+            console.log(response)
+            location.reload();
+          })
+          .catch(function (error) {
+            console.log(error);
+        });    
+        },
     },
-    
   }
   </script>
   
