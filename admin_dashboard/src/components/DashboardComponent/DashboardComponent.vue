@@ -21,10 +21,18 @@
     
     computed: {
       ...mapStores(useProductStore),
-      ...mapState(useProductStore, ['products'])
+      ...mapState(useProductStore, ['products', 'user'])
     },
     beforeMount() {
       this.ProductStoreStore.fetchProducts()
+      this.ProductStoreStore.fetchUser(sessionStorage.getItem('token'))
+    },
+    beforeUpdate() {
+      if (this.user.length == 0){
+        this.$router.push('/login')
+      } else if (this.user[0].admin == 0) {
+        this.$router.push('/profile')
+      }
     },
     methods: {
       
