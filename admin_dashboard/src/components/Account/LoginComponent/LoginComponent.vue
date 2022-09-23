@@ -9,6 +9,11 @@
       props: {
         msg: String
       },
+      beforeMount(){
+        if(sessionStorage.getItem('token') != null){
+          window.location.href = "/profile";
+        }
+      },
       methods: {
         login: function () {
          // If there is no field that are empty

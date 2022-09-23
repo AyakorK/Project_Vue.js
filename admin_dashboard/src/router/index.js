@@ -4,7 +4,7 @@ import StoreView from '../views/StoreView.vue'
 import DashboardView from '../views/DashboardView.vue'
 import ClientsView from '../views/ClientsView.vue'
 import CommandesView from '../views/CommandesView.vue'
-import ProduitsView from '../views/ProduitsView.vue'
+// import ProduitsView from '../views/ProduitsView.vue'
 import CategoriesView from '../views/CategoriesView.vue'
 import ProfilView from '../views/ProfilView.vue'
 
@@ -19,8 +19,8 @@ const routes = [{
         component: StoreView
     },
     {
-        path: '/dashboard',
-        name: 'dashboard',
+        path: '/products',
+        name: 'products',
         component: DashboardView
     },
     {
@@ -29,23 +29,23 @@ const routes = [{
         component: ClientsView
     },
     {
-        path: '/commandes',
-        name: 'commandes',
+        path: '/orders',
+        name: 'orders',
         component: CommandesView
     },
-    {
-        path: '/produits',
-        name: 'produits',
-        component: ProduitsView
-    },
+    // {
+    //     path: '/produits',
+    //     name: 'produits',
+    //     component: ProduitsView
+    // },
     {
         path: '/categories',
         name: 'categories',
         component: CategoriesView
     },
     {
-        path: '/profil',
-        name: 'profil',
+        path: '/profile',
+        name: 'profile',
         component: ProfilView
     },
     {
