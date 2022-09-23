@@ -11,7 +11,7 @@
       },
       beforeMount(){
         if(sessionStorage.getItem('token') != null){
-          window.location.href = "http://10.57.29.211:8080/profil";
+          window.location.href = "http://localhost:8080/profil";
         }
       },
       methods: {

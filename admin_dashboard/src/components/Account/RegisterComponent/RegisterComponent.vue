@@ -26,7 +26,7 @@
               .then(function (response) {
                 console.log(response.status);
                 if (response.status === 201) {
-                  window.location.href = "http://10.57.29.211:8080/login";
+                  window.location.href = "http://localhost:8080/login";
                   
                 } else { 
                   alert("Register failed");
