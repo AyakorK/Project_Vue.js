@@ -16,12 +16,13 @@
         newProductCategory: "",
         newProductPrice: "",
         table: "",
+        selectCategoryName: "Select a category",
       }
     },
     
     computed: {
       ...mapStores(useProductStore),
-      ...mapState(useProductStore, ['products', 'user'])
+      ...mapState(useProductStore, ['category', 'products', 'user' ]),
     },
     beforeMount() {
       this.ProductStoreStore.fetchProducts()
@@ -48,7 +49,7 @@
             })
               .then(function (response) {
                 console.log(response)
-                location.reload();
+                // location.reload();
               })
               .catch(function (error) {
                 console.log(error);
@@ -77,7 +78,7 @@
             this.products.quantity = response.data.quantity
             this.products.category = response.data.category
             this.products.price = response.data.price
-            
+
           }).catch(error => {
             console.log(error.response.data)
           })
