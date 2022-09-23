@@ -32,7 +32,7 @@
                         sessionStorage.setItem('token', response.data[0].token);
                         
                         // redirect to shopping page
-                        window.location.href = "/store";
+                        window.location.href = "/";
                     } else {
                     alert("Login failed");
                     }
