@@ -18,7 +18,9 @@
       this.ProductStoreStore.fetchUser(sessionStorage.getItem('token'))
     },
 
-    beforeUpdate() {
+    
+
+    beforeUpdate(){
       if (this.user.length == 0){
         this.$router.push('/login')
       } else if (this.user[0].admin == 0) {
@@ -27,6 +29,17 @@
     },
 
     methods:{
+
+    prev() {
+      if (this.ProductStoreStore.page > 1) {
+        this.ProductStoreStore.decrement();
+      }
+    },
+    next() {
+      if (this.ProductStoreStore.users.length == 5) {
+        this.ProductStoreStore.increment();
+      }
+    },
 
     deleteProduct(usersID) {
       console.log("delete")

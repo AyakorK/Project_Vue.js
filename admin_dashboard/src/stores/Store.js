@@ -8,6 +8,8 @@ export const useProductStore = defineStore("ProductStore", {
             users: [],
             user: [],
             orders: [],
+            totalItems: 0,
+            page: 1,
         };
     },
     actions: {
@@ -27,10 +29,24 @@ export const useProductStore = defineStore("ProductStore", {
             this.products = data
         },
         async fetchUsers() {
-            const res = await fetch('http://10.57.29.211:3000/users')
+            const res = await fetch('http://10.57.29.211:3000/users?_page=' + this.page +"&_limit=5")
             const data = await res.json()
             this.users = data
+            this.totalUser = res.headers.get('X-Total-Count')
+            this.totalPage = Math.ceil(this.totalUser / 5)
+            console.log(this.totalUser)
         },
+        increment(){
+            this.page++
+            this.fetchUsers()
+        },
+
+        decrement(){
+            this.page--
+            this.fetchUsers()
+        },
+    
+
         async fetchUser(token) {
             const res = await fetch('http://10.57.29.211:3000/users?token=' + token)
             const data = await res.json()
@@ -41,5 +57,7 @@ export const useProductStore = defineStore("ProductStore", {
             const data = await res.json()
             this.orders = data
         }
+
+
     },
 });

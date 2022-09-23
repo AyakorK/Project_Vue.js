@@ -27,6 +27,7 @@
                 })
                 .then(function (response) {
                     if (response.data.length > 0) {
+                      console.log("yo")
                         // Add a random token to sessionStorage
                         sessionStorage.setItem('token', response.data[0].token);
                         
