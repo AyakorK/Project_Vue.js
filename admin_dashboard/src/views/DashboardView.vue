@@ -1,8 +1,8 @@
 <template>
-  <headerComponent></headerComponent>
+  <headerComponent/>
   <div class="dashboard">
     <SideBarComponent/>
-    <DashboardComponent msg="Welcome to Your Vue.js App"/>
+    <DashboardComponent/>
   </div>
 </template>
 

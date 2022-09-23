@@ -7,6 +7,7 @@ import CommandesView from '../views/CommandesView.vue'
 import ProduitsView from '../views/ProduitsView.vue'
 import CategoriesView from '../views/CategoriesView.vue'
 import ProfilView from '../views/ProfilView.vue'
+import PaginationView from '../views/PaginationView.vue'
 
 const routes = [{
         path: '/',
@@ -59,7 +60,12 @@ const routes = [{
         name: 'register',
         component: () =>
             import ('../views/account/RegisterView.vue')
-    }
+    },
+    {
+        path: '/pagination',
+        name: 'pagination',
+        component: PaginationView
+    },
     // {
     //     path: '/store',
     //     name: 'store',
