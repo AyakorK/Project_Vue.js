@@ -74,7 +74,7 @@ export default {
           quantity: 1
         })
       }
-      console.log(this.cart)
+     
       // Stock this cart in the local storage
       localStorage.setItem('cart', JSON.stringify(this.cart))
 
@@ -83,11 +83,8 @@ export default {
     },
     displayProduct() {
       const ProductID = this.cart[this.selectedCart].id;
-      console.log("id : " + this.cart[this.selectedCart].id)
       axios.get("http://10.57.29.211:3000/products/" + ProductID)
         .then(response => {
-          console.log(response)
-
           this.products.id = response.data.id,
           this.products.name = response.data.name
           this.products.quantity = response.data.quantity
@@ -110,6 +107,10 @@ export default {
     },
 
     buyCart() {
+      if (this.user.length == 0) {
+        // Redirect to login page
+        window.location.href = "/login";
+      }
       
       // Get the infos of the user
       

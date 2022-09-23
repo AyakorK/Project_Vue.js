@@ -4,6 +4,18 @@
   import { useProductStore } from '../../stores/Store.js';
   import { mapStores, mapState } from 'pinia'
   export default {
+    data() {
+      return {
+        audios: [
+          {
+            id: "easterEgg",
+            name: "EasterEggMusic",
+            file: new Audio(require('../../assets/easterEgg.mp3')),
+            isPlaying: false,
+          },
+        ],
+      }
+    },
     computed: {
       ...mapStores(useProductStore),
       ...mapState(useProductStore, ['user']),
@@ -33,6 +45,21 @@
         logout() {
           sessionStorage.removeItem('token');
           window.location.href = "/";
+          // Empty local storage
+          localStorage.clear();
+        },
+
+        play(audio) {
+          console.log("music start")
+          audio.isPlaying = true;
+          audio.file.play();
+        },
+        
+        pause(audio) {
+          console.log("music end")
+
+          audio.isPlaying = false;
+          audio.file.pause();
         }
       }
   }

@@ -130,9 +130,9 @@
                         </li>
                     </div>
                 </ul>
+                <button class="text-white" @click.prevent="audio.isPlaying ? pause(audio) : play(audio)" v-for="audio in audios" :key="audio.id">{{ audio.isPlaying ? 'Pause' : 'Play' }}</button>
             </div>
         </div>
     </div>
     <!-------------------------------------------- SideBar ------------------------------------------------->
-
 </div>

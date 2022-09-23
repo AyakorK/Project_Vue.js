@@ -27,12 +27,10 @@
                 })
                 .then(function (response) {
                     if (response.data.length > 0) {
-                      console.log("yo")
                         // Add a random token to sessionStorage
                         sessionStorage.setItem('token', response.data[0].token);
-                        
                         // redirect to shopping page
-                        window.location.href = "/store";
+                        window.location.href = "/";
                     } else {
                     alert("Login failed");
                     }
