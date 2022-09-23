@@ -30,6 +30,21 @@
         // Give back the money to the user with a put axios
         let order = this.orders.find(order => order.id == OrderID)
         let user = this.users.find(user => user.id == order.user_id)
+        
+        // For each product in the order
+        order.products.forEach(item => {
+          // Find the product in the products array
+          let product = this.products.find(productInArray => productInArray.id == item.id)
+          // Add the quantity of the product in the order to the quantity of the product in the products array
+          product.quantity += item.quantity
+          // Update the product in the products array
+          axios.put('http://localhost:3000/products/' + product.id, {
+            name: product.name,
+            price: product.price,
+            quantity: product.quantity,
+            category_id: product.category,
+          })
+        })
 
         axios.put('http://10.57.29.211:3000/users/' + user.id, {
           email: user.email,
@@ -61,8 +76,37 @@
           })
       },
       updateOrder(orderID) {
+      let order = this.orders.find(order => order.id == orderID)
       let products = this.orders.products
       let user = this.users.find(user => user.id == this.orders.user_id)
+
+  
+      console.log(products)
+      console.log(user)
+      
+
+      order.products.forEach(item => {
+        console.log(item)
+        console.log(item.id)
+          // Find the product in the products array
+          let product = this.products.find(productInArray => productInArray.id == item.id)
+          // Add the quantity of the product in the order to the quantity of the product in the products array
+          let previousProduct = this.orders.products.find(productInArray => productInArray.id == item.id)
+          console.log(product)
+          console.log(previousProduct.quantity)
+          console.log(product.quantity)
+          console.log(item.quantity)
+          product.quantity =  product.quantity + item.quantity - previousProduct.quantity
+          console.log(product.quantity)
+          // Update the product in the products array
+          axios.put('http://localhost:3000/products/' + product.id, {
+            name: product.name,
+            price: product.price,
+            quantity: product.quantity,
+            category: product.category,
+          })
+        })
+      
     
       for (let i = 0; i < products.length; i++) {
         products[i].quantity = parseInt(products[i].quantity)
