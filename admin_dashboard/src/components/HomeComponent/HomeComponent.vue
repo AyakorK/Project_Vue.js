@@ -6,6 +6,15 @@ export default {
   name: 'HelloWorld',
   props: {
     msg: String
+  },
+  methods: {
+    isAuthenticated() {
+      if (sessionStorage.getItem('token') != null) {
+        return true;
+      } else {
+        return false;
+      }
+    },
   }
 }
 </script>
