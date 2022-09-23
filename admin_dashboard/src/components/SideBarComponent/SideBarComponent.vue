@@ -45,6 +45,8 @@
         logout() {
           sessionStorage.removeItem('token');
           window.location.href = "/";
+          // Empty local storage
+          localStorage.clear();
         },
 
         play(audio) {
