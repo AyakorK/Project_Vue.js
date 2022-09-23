@@ -29,8 +29,8 @@ const routes = [{
         component: ClientsView
     },
     {
-        path: '/commandes',
-        name: 'commandes',
+        path: '/orders',
+        name: 'orders',
         component: CommandesView
     },
     // {
@@ -44,8 +44,8 @@ const routes = [{
         component: CategoriesView
     },
     {
-        path: '/profil',
-        name: 'profil',
+        path: '/profile',
+        name: 'profile',
         component: ProfilView
     },
     {
