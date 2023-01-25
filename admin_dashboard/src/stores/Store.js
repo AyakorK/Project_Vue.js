@@ -14,22 +14,22 @@ export const useProductStore = defineStore("ProductStore", {
     },
     actions: {
         async fetchProducts() {
-            const res = await fetch('http://10.57.29.211:3000/products')
+            const res = await fetch('http://10.10.20.110/products')
             const data = await res.json()
             this.products = data
         },
         async fetchCategory() {
-            const res = await fetch('http://10.57.29.211:3000/categories')
+            const res = await fetch('http://10.10.20.110/categories')
             const data = await res.json()
             this.category = data
         },
         async fetchProductsWithId(productsId) {
-            const res = await fetch('http://10.57.29.211:3000/products?category=' + productsId)
+            const res = await fetch('http://10.10.20.110/products?category=' + productsId)
             const data = await res.json()
             this.products = data
         },
         async fetchUsers() {
-            const res = await fetch('http://10.57.29.211:3000/users?_page=' + this.page +"&_limit=5")
+            const res = await fetch('http://10.10.20.110/users?_page=' + this.page +"&_limit=5")
             const data = await res.json()
             this.users = data
             this.totalUser = res.headers.get('X-Total-Count')
@@ -48,12 +48,12 @@ export const useProductStore = defineStore("ProductStore", {
     
 
         async fetchUser(token) {
-            const res = await fetch('http://10.57.29.211:3000/users?token=' + token)
+            const res = await fetch('http://10.10.20.110/users?token=' + token)
             const data = await res.json()
             this.user = data
         },
         async fetchOrders() {
-            const res = await fetch('http://10.57.29.211:3000/orders')
+            const res = await fetch('http://10.10.20.110/orders')
             const data = await res.json()
             this.orders = data
         }
