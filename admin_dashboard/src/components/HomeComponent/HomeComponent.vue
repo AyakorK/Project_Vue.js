@@ -15,6 +15,15 @@ export default {
         return false;
       }
     },
+    getUsers() {
+      axios.get(`http://${process.env.API_URL}/users`)
+        .then(function (response) {
+          console.log(response.data);
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
+    }
   }
 }
 </script>
