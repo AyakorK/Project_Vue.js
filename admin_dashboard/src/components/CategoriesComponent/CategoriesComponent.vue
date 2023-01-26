@@ -31,7 +31,7 @@
       },
       //Function to add a category to the API
       addCategory() {
-        axios.post('http://10.57.29.211:3000/categories', {
+        axios.post(`http://${process.env.API_URL}/categories`, {
 
           id: this.category.slice(-1)[0].id + 1,
           title: this.newCategoryName,

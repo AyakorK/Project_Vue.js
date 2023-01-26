@@ -38,7 +38,7 @@
     methods: {
       
       addProduct() {
-        axios.post('http://10.57.29.211:3000/products', {
+        axios.post(`http://${process.env.API_URL}/products`, {
 
               id: this.products.slice(-1)[0].id + 1,
               name: this.newProductName,
@@ -60,7 +60,7 @@
 
       deleteProduct(ProductID) {
         console.log("delete")
-        axios.delete("http://10.57.29.211:3000/products/" + ProductID)
+        axios.delete(`http://${process.env.API_URL}/products/` + ProductID)
           .then(() => {
             this.products.splice(ProductID, 1);
             // console.log(this.products);
@@ -69,7 +69,7 @@
       },
 
       displayProduct(ProductID) {
-        axios.get("http://10.57.29.211:3000/products/" + ProductID)
+        axios.get(`http://${process.env.API_URL}/products/` + ProductID)
           .then(response => {
             console.log(response)
 
@@ -87,7 +87,7 @@
       updateProduct(ProductID) {
         console.log("update")
         console.log(ProductID)
-        axios.put("http://10.57.29.211:3000/products/" + ProductID, {
+        axios.put(`http://${process.env.API_URL}/products/` + ProductID, {
           name: this.products.name,
           quantity: this.products.quantity,
           category: this.products.category,

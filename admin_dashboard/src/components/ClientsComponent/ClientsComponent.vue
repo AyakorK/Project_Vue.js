@@ -43,7 +43,7 @@
 
     deleteProduct(usersID) {
       console.log("delete")
-      axios.delete("http://10.57.29.211:3000/users/" + usersID)
+      axios.delete(`http://${process.env.API_URL}/users/` + usersID)
         .then(() => {
           this.products.splice(usersID, 1);
           // console.log(this.products);

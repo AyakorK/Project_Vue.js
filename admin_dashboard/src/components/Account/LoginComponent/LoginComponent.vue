@@ -11,7 +11,7 @@
       },
       beforeMount(){
         if(sessionStorage.getItem('token') != null){
-          window.location.href = "/profile";
+          this.$router.push('/profile')
         }
       },
       methods: {
@@ -19,7 +19,7 @@
          // If there is no field that are empty
           if (this.email != undefined && this.password != undefined) {
 
-            axios.get('http://10.57.29.211:3000/users', {
+            axios.get(`http://${process.env.API_URL}/users`, {
                 params: {
                     email: this.email,
                     password: this.password
@@ -30,7 +30,7 @@
                         // Add a random token to sessionStorage
                         sessionStorage.setItem('token', response.data[0].token);
                         // redirect to shopping page
-                        window.location.href = "/";
+                        this.$router.push('/')
                     } else {
                     alert("Login failed");
                     }

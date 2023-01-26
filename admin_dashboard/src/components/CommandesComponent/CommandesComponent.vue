@@ -38,7 +38,7 @@
           // Add the quantity of the product in the order to the quantity of the product in the products array
           product.quantity += item.quantity
           // Update the product in the products array
-          axios.put('http://localhost:3000/products/' + product.id, {
+          axios.put(`http://${process.env.API_URL}/products/` + product.id, {
             name: product.name,
             price: product.price,
             quantity: product.quantity,
@@ -46,7 +46,7 @@
           })
         })
 
-        axios.put('http://10.57.29.211:3000/users/' + user.id, {
+        axios.put(`http://${process.env.API_URL}/users/` + user.id, {
           email: user.email,
           password: user.password,
           admin: user.admin,
@@ -54,7 +54,7 @@
           money: user.money + order.total_price
         })
 
-        axios.delete("http://10.57.29.211:3000/orders/" + OrderID)
+        axios.delete(`http://${process.env.API_URL}/orders/` + OrderID)
           .then(() => {
             this.orders.splice(OrderID, 1);  
           });
@@ -63,7 +63,7 @@
           
       },
       displayOrder(OrderID) {
-        axios.get("http://10.57.29.211:3000/orders/" + OrderID)
+        axios.get(`http://${process.env.API_URL}/orders/` + OrderID)
           .then(response => {
             console.log(response)
 
@@ -99,7 +99,7 @@
           product.quantity =  product.quantity + item.quantity - previousProduct.quantity
           console.log(product.quantity)
           // Update the product in the products array
-          axios.put('http://localhost:3000/products/' + product.id, {
+          axios.put(`http://${process.env.API_URL}/products/` + product.id, {
             name: product.name,
             price: product.price,
             quantity: product.quantity,
@@ -118,7 +118,7 @@
       }
 
       if (user.money + parseInt(this.orders.total_price) - parseInt(total_price) > 0) {
-      axios.put('http://10.57.29.211:3000/users/' + user.id, {
+      axios.put(`http://${process.env.API_URL}/users/` + user.id, {
         email: user.email,
         password: user.password,
         admin: user.admin,
@@ -127,7 +127,7 @@
       })
 
       
-      axios.put('http://10.57.29.211:3000/orders/' + orderID, {
+      axios.put(`http://${process.env.API_URL}/orders/` + orderID, {
         user_id: this.orders.user_id,
         products: this.orders.products,
         total_price: total_price,

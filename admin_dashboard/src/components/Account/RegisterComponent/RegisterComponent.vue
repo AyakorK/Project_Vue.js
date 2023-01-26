@@ -17,7 +17,8 @@
 
           if (this.email != undefined  &&  emailRegex.test(this.email) && this.password != undefined && this.password.length >= 8  && this.password == this.confirm_password) {
             // Send the data to the server
-            axios.post('http://10.57.29.211:3000/users', {
+            // It will use the ENV BASE_URL/users
+            axios.post(`http://${process.env.API_URL}/users`,{
               email: this.email,
               password: this.password,
               money: 100,
@@ -26,9 +27,9 @@
               .then(function (response) {
                 console.log(response.status);
                 if (response.status === 201) {
-                  window.location.href = "http://localhost:8080/login";
-                  
-                } else { 
+                  this.$router.push(`http://${process.env.BASE_URL}/login`);
+
+                } else {
                   alert("Register failed");
                 }
               })

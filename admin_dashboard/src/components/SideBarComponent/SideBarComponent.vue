@@ -44,7 +44,7 @@
         },
         logout() {
           sessionStorage.removeItem('token');
-          window.location.href = "/";
+          this.$router.push('/');
           // Empty local storage
           localStorage.clear();
         },

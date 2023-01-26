@@ -55,7 +55,7 @@ export default {
     addToCart(id, name, price){
       if (this.user.length == 0) {
         // Redirect to login page
-        window.location.href = "/login";
+       this.$router.push('/login')
       }
       // If id already exists in the cart increase his quantity by one
       if(this.cart.some(item => item.id === id)){
@@ -83,7 +83,7 @@ export default {
     },
     displayProduct() {
       const ProductID = this.cart[this.selectedCart].id;
-      axios.get("http://10.57.29.211:3000/products/" + ProductID)
+      axios.get(`http://${process.env.API_URL}/products/` + ProductID)
         .then(response => {
           this.products.id = response.data.id,
           this.products.name = response.data.name
@@ -109,7 +109,7 @@ export default {
     buyCart() {
       if (this.user.length == 0) {
         // Redirect to login page
-        window.location.href = "/login";
+        this.$router.push('/login')
       }
       
       // Get the infos of the user
@@ -121,21 +121,21 @@ export default {
             this.cart.forEach(item => {
             const product = this.ProductStoreStore.products.find(product => product.id === item.id)
           
-            axios.put(`http://10.57.29.211:3000/products/${item.id}`, {
+            axios.put(`http://${process.env.API_URL}/products/${item.id}`, {
               name: product.name,
               quantity: product.quantity - item.quantity,
               category: product.category,
               price: product.price
             })
           })
-        axios.put(`http://10.57.29.211:3000/users/${user.id}`, {
+        axios.put(`http://${process.env.API_URL}/users/${user.id}`, {
           email: user.email,
           password: user.password,
           admin: user.admin,
           token: user.token,
           money: user.money - this.totalPrice
         })
-        axios.post('http://10.57.29.211:3000/orders', {
+        axios.post(`http://${process.env.API_URL}/orders`, {
           user_id: user.id,
           total_price: this.totalPrice,
           products: this.cart
@@ -144,7 +144,7 @@ export default {
           this.cart = []
           localStorage.setItem('cart', JSON.stringify(this.cart))
           this.totalPrice = 0
-          window.location.href = "/store";
+          this.$router.push("/store");
         }).catch(error => {
           console.log(error.response.data)
         })
