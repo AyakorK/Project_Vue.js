@@ -16,7 +16,7 @@ export default {
       }
     },
     getUsers() {
-      axios.get(`http://${process.env.API_URL}/users`)
+      axios.get(`http://10.10.20.110:8000/users`)
         .then(function (response) {
           console.log(response.data);
         })
